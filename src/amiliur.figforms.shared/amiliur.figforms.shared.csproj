@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net8.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <AssemblyVersion>0.1.1</AssemblyVersion>
+	  <FileVersion>0.1.1</FileVersion>
+	  <Authors>Rui Lima</Authors>
+	  <Product>amiliur fig-forms</Product>
+	  <SignAssembly>False</SignAssembly>
+	  <PackageId>amiliur.figforms.shared</PackageId>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageProjectUrl>https://github.com/ruilimacom/amiliur.fig-forms</PackageProjectUrl>
+	  <Copyright>MIT License</Copyright>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <RepositoryUrl>https://github.com/ruilimacom/amiliur.fig-forms</RepositoryUrl>
+	  <PackageTags>dynamic forms, metadata</PackageTags>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	  <Description>Shared package for amiliur FigForms </Description>
+	  <Version>0.1.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
