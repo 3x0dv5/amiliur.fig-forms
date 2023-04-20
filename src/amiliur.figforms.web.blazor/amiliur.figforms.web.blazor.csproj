@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyVersion>0.1.2</AssemblyVersion>
+		<FileVersion>0.1.2</FileVersion>
+		<Authors>Rui Lima</Authors>
+		<Product>amiliur.fig-forms</Product>
+		<SignAssembly>False</SignAssembly>
+		<PackageId>amiliur.figforms.web.blazor</PackageId>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageProjectUrl>https://github.com/ruilimacom/amiliur.fig-forms</PackageProjectUrl>
+		<Copyright>MIT License</Copyright>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/ruilimacom/amiliur.fig-forms</RepositoryUrl>
+		<PackageTags>dynamic forms, metadata</PackageTags>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<Description>Blazor package for amiliur FigForms </Description>
+		<Version>0.1.2</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="amiliur.figforms.shared" Version="0.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.3.23177.8" />
+		<PackageReference Include="Radzen.Blazor" Version="4.10.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>
