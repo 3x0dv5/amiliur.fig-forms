@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests.amiliur.figforms.web.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C3E99A04-6DFD-4557-810A-F9DB3FA245E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSample", "src\samples\BlazorSample\BlazorSample.csproj", "{E2BC0E37-E90F-4045-A34A-2A7692D13BF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{3EFBE0AD-6EDB-4089-B690-6C05DD4398C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EFBE0AD-6EDB-4089-B690-6C05DD4398C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EFBE0AD-6EDB-4089-B690-6C05DD4398C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2BC0E37-E90F-4045-A34A-2A7692D13BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2BC0E37-E90F-4045-A34A-2A7692D13BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2BC0E37-E90F-4045-A34A-2A7692D13BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2BC0E37-E90F-4045-A34A-2A7692D13BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

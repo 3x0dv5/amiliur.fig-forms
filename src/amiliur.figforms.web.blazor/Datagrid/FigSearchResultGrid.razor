@@ -1,0 +1,25 @@
+﻿@typeparam TItem
+
+<RadzenDataGrid
+    @ref="@GridObj"
+    Data="@DataSource"
+    TItem="TItem"
+    AllowFiltering="true"
+    FilterPopupRenderMode="PopupRenderMode.OnDemand"
+    FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+    AllowPaging="true"
+    PageSize="4"
+    AllowSorting="true"
+    ColumnWidth="200px"
+    SelectionMode="DataGridSelectionMode.Single"
+    >
+    <Columns>
+        
+        @*
+        <RadzenDataGridColumn TItem="Employee" Property="Title" Title="Title"/>
+        <RadzenDataGridColumn TItem="Employee" Property="EmployeeID" Title="Employee ID"/>
+        <RadzenDataGridColumn TItem="Employee" Property="HireDate" Title="Hire Date" FormatString="{0:d}"/>
+        <RadzenDataGridColumn TItem="Employee" Property="City" Title="City"/>
+        <RadzenDataGridColumn TItem="Employee" Property="Country" Title="Country"/>*@
+    </Columns>
+</RadzenDataGrid>
