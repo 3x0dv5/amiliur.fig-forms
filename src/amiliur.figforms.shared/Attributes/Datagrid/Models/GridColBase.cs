@@ -38,7 +38,7 @@ public abstract class GridColBase: ISerializableModel
 
     public virtual string Width { get; set; } = string.Empty;
 
-    public ColTemplateBase Template { get; set; }
+    public ColTemplateBase? Template { get; set; }
     public GridColBase()
     {
     }

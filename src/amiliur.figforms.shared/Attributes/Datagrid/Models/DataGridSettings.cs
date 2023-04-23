@@ -28,6 +28,7 @@ public class DataGridSettings : ISerializableModel
     public bool AllowMultiSorting { get; set; } = true;
     public bool AllowGrouping { get; set; }
     public bool AllowSelection { get; set; }
+    public bool AllowFiltering { get; set; }
 
 
     /// <summary>

@@ -4,8 +4,8 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<AssemblyVersion>0.1.2</AssemblyVersion>
-		<FileVersion>0.1.2</FileVersion>
+		<AssemblyVersion>0.1.2.1</AssemblyVersion>
+		<FileVersion>0.1.2.1</FileVersion>
 		<Authors>Rui Lima</Authors>
 		<Product>amiliur.fig-forms</Product>
 		<SignAssembly>False</SignAssembly>
@@ -19,7 +19,7 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<Description>Blazor package for amiliur FigForms </Description>
-		<Version>0.1.2</Version>
+		<Version>0.1.2.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,13 +34,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="amiliur.figforms.shared" Version="0.1.1" />
-		<PackageReference Include="amiliur.shared" Version="0.1.3.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.3.23177.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.3.23177.8" />
 		<PackageReference Include="Radzen.Blazor" Version="4.10.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\amiliur.web\src\amiliur.shared\amiliur.shared.csproj" />
+		<ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj" />
+	</ItemGroup>
+	
 	<ItemGroup>
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
@@ -52,8 +55,6 @@
 	  </None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj" />
-	</ItemGroup>
+
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using System;
-using amiliur.figforms.shared.Attributes.Datagrid.Attributes.GridColAttributes;
+﻿using amiliur.figforms.shared.Attributes.Datagrid.Attributes.GridColAttributes;
 
 namespace Fig.App.Web.Shared.DynUi.GridColAttributes;
 

@@ -1,4 +1,7 @@
 ﻿@page "/fetchdata"
+@using amiliur.figforms.shared.Attributes.Datagrid
+@using amiliur.figforms.shared.Attributes.Datagrid.Attributes.GridColAttributes
+@using Fig.App.Web.Shared.DynUi.GridColAttributes
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>
@@ -15,10 +18,9 @@
 }
 else
 {
-    
     <FigSearchResultGrid TItem="@WeatherForecast" DataSource="@forecasts.ToList()">
     </FigSearchResultGrid>
-    
+
     <table class="table">
         <thead>
         <tr>
@@ -50,14 +52,18 @@ else
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
     }
 
+    [DataGridSettings()]
     public class WeatherForecast
     {
+        [DateGridCol(HeaderText = "Date")]
         public DateOnly Date { get; set; }
 
+        [IntGridCol(HeaderText = "Temp. (C)")]
         public int TemperatureC { get; set; }
-
+        [TextGridCol(DisplayOrder = 4)]
         public string? Summary { get; set; }
 
+        [IntGridCol(HeaderText = "Temp. (F)")]
         public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
     }
 
