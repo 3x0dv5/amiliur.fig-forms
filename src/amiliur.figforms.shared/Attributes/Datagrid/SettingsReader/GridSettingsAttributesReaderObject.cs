@@ -117,7 +117,9 @@ public class GridSettingsAttributesReaderObject : IGridSettingsReader
 
         var compoundColumn = (CompoundCol) CompoundCol.Instance(property.Name, controls, conditions);
         var compoundColAttribute = property.GetCustomAttribute<CompoundGridColAttribute>();
-        CopyPropertiesFromAttributeToCompoundCol(compoundColAttribute, compoundColumn);
+
+        if (compoundColAttribute != null)
+            CopyPropertiesFromAttributeToCompoundCol(compoundColAttribute, compoundColumn);
 
         return compoundColumn;
     }
