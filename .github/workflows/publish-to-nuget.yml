@@ -39,6 +39,6 @@ jobs:
       run: dotnet pack --configuration Release --output ./output/
       working-directory: './'
     
-    - name: Publish amiliur.annotations to NuGet
+    - name: Publish Packages to NuGet
       run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
       working-directory: './output/'
