@@ -1,4 +1,4 @@
-using amiliur.figforms.shared.Attributes.Datagrid.SettingsReader;
+using amiliur.web.shared.Attributes.Datagrid.SettingsReader;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace amiliur.figforms.shared.DependencyInjection;

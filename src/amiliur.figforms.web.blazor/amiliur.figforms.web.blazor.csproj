@@ -20,6 +20,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="wwwroot\**" />
+      <Content Remove="wwwroot\**" />
+      <EmbeddedResource Remove="wwwroot\**" />
+      <None Remove="wwwroot\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <None Include="..\..\LICENSE">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
@@ -33,10 +40,12 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.3.23177.8" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.3.23177.8" />
-        <PackageReference Include="Radzen.Blazor" Version="4.10.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0-preview.3.23177.8" />
+        <PackageReference Include="Radzen.Blazor" Version="4.10.3" />
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj" />
         <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj" />
     </ItemGroup>
 
@@ -51,10 +60,6 @@
 
     <ItemGroup Condition="'$(LocalEnvironment)' == ''">
         <PackageReference Include="amiliur.shared" Version="1.*-*" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="wwwroot\" />
     </ItemGroup>
 
     <ItemGroup>

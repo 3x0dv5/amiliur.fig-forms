@@ -1,0 +1,18 @@
+﻿@typeparam T
+
+@if (Visible)
+{
+    <label @attributes="AdditionalAttributes">
+        @Label
+    </label>
+    @if (!string.IsNullOrEmpty(Description))
+    {
+        <span class="help-text">
+            <span>@(new MarkupString(Description))</span>
+        </span>
+    }
+}
+else
+{
+    <input type="hidden" value="@Label" id="label-@Name()"/>
+}
