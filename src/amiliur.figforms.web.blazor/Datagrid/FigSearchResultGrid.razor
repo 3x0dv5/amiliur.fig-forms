@@ -1,8 +1,9 @@
-﻿@typeparam TItem
+﻿@using amiliur.web.shared.Attributes.Datagrid.Enums
+@typeparam TItem
 
 @if (Settings == null)
 {
-    <span>Loading</span>
+    <Loading></Loading>
 }
 else
 {
@@ -16,12 +17,33 @@ else
         AllowPaging="@Settings.AllowPaging"
         PageSize="@Settings.PageSize"
         AllowSorting="true"
-        ColumnWidth="200px"
-        SelectionMode="DataGridSelectionMode.Single">
+        SelectionMode="DataGridSelectionMode.Single"
+        EmptyText="@DataGrid.EmptyText"
+        @bind-Value="@SelectedItems">
         <Columns>
             @foreach (var column in Settings.Columns.OrderBy(m => m.DisplayOrder).ToList())
             {
-                <RadzenDataGridColumn TItem="TItem" Property="@column.Field" Title="@column.HeaderText"/>
+                switch (column.TypeOfColumn)
+                {
+                    case TypeOfColumn.Text:
+                        <TextColumn TGridItem="TItem" Column="@column"/>
+                        break;
+                    case TypeOfColumn.Button:
+                        <ButtonColumn OnClick="OnGridButtonClick" TGridItem="TItem" Column="@column"/>
+                        break;
+                    case TypeOfColumn.Date:
+                        <DateColumn TGridItem="TItem" Column="@column"/>
+                        break;
+                    case TypeOfColumn.Decimal:
+                        <DecimalColumn TGridItem="TItem" Column="@column"/>
+                        break;
+                    case TypeOfColumn.Currency:
+                        <CurrencyColumn TGridItem="TItem" Column="@column"/>
+                        break;
+                    default:
+                        <DefaultColumn TGridItem="TItem" Column="@column"/>
+                        break;
+                }
             }
         </Columns>
     </RadzenDataGrid>
