@@ -36,13 +36,13 @@ public class FieldValueExpr : FilterExpr
     {
     }
 
-    public FieldValueExpr(string field, string value)
+    public FieldValueExpr(string field, string value, WhereFilterType filterType)
     {
         Field = field;
         Value = value;
+        FilterType = filterType;
     }
 
     public string? Field { get; set; }
     public object? Value { get; set; }
-
 }

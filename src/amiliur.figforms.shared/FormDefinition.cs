@@ -8,6 +8,7 @@ namespace amiliur.figforms.shared;
 
 public class FormDefinition : ISerializableModel
 {
+    // ReSharper disable once UnusedMember.Global
     public FormDefinition()
     {
     }
