@@ -8,6 +8,7 @@ using amiliur.shared.Json;
 using amiliur.shared.Reflection;
 using amiliur.web.shared.Forms;
 using amiliur.web.shared.Models.Generic;
+using amiliur.web.shared.Models.Results;
 using amiliur.web.shared.Reflection;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -23,6 +24,8 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
     [Parameter] public EventCallback<InputChangedArgs> InputChanged { get; set; }
     [Parameter] public EventCallback<FormDefinitionLoadedArgs> FormDefinitionLoaded { get; set; }
     [Parameter] public EventCallback<FormDataLoadedArgs> FormDataLoaded { get; set; }
+    [Parameter] public EventCallback<FormDataSavedArgs> OnSaveFailed { get; set; }
+    [Parameter] public EventCallback<FormDataSavedArgs> OnSaveSuccess { get; set; }
 
 
     [Parameter] public string FormContext { get; set; } = null!;
@@ -45,7 +48,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
     public BaseEditModel? Input { get; set; }
     public bool InEditMode => Input != null && Input.IsEdit;
     private IEnumerable<BaseFormFieldModel> Fields => FormDefinition?.Fields ?? Array.Empty<BaseFormFieldModel>();
-    private string ErrorMessage { get; set; } = null!;
+    private string? ErrorMessage { get; set; } = null!;
 
     public FormDefinition? FormDefinition { get; set; }
 
@@ -162,7 +165,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
             EditContext = new EditContext(Input);
     }
 
-    private static BaseEditModel? CreateEmptyInstanceOfEditModel(Type type)
+    private static BaseEditModel CreateEmptyInstanceOfEditModel(Type type)
     {
         var result = (BaseEditModel?) Activator.CreateInstance(type);
         if (result == null)
@@ -264,7 +267,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
         return FieldComponents[field.FieldName];
     }
 
-    public BaseEditModel GetFormValues()
+    public BaseEditModel? GetFormValues()
     {
         return Input;
     }
@@ -279,5 +282,35 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
         return cell.ColumnBootstrapSpan == null
             ? "col"
             : $"col-{cell.ColumnBootstrapSpan}";
+    }
+
+    public async Task SaveData()
+    {
+        ErrorMessage = string.Empty;
+        if (HasValidData() && FormDefinition != null)
+        {
+            var model = GetFormValues();
+            if (model == null)
+                return;
+
+            var result = await DataService.SaveFormData<SaveBaseResult>(FormDefinition, model);
+            var savedArgs = new FormDataSavedArgs
+            {
+                Data = model,
+                FormDefinition = FormDefinition,
+                Result = result
+            };
+            if (result.Success == false)
+            {
+                ErrorMessage = result.ErrorMessage;
+                await OnSaveFailed.InvokeAsync(savedArgs).ConfigureAwait(false);
+            }
+            else
+            {
+                await OnSaveSuccess.InvokeAsync(savedArgs).ConfigureAwait(false);
+            }
+
+            Log.Debug("Save result: {0}", result.ToJson());
+        }
     }
 }

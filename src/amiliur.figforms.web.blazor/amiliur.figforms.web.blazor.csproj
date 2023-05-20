@@ -24,6 +24,18 @@
       <Content Remove="wwwroot\**" />
       <EmbeddedResource Remove="wwwroot\**" />
       <None Remove="wwwroot\**" />
+      <EmbeddedResource Update="Components\Standard\Buttons\Buttons.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <Compile Update="Components\Standard\Buttons\Buttons.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Buttons.resx</DependentUpon>
+      </Compile>
+      <EmbeddedResource Update="Components\Standard\Buttons\Buttons.pt.resx">
+        <DependentUpon>Buttons.resx</DependentUpon>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>

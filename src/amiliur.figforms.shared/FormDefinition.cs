@@ -41,6 +41,7 @@ public class FormDefinition : ISerializableModel
     [JsonIgnore] public string Id => $"{FormContext}.{FormModule}.{FormCode}.{FormMode}";
 
     public DataSource LoadDataSource { get; set; } = null!;
+    public DataSource SaveDataSource { get; set; } = null!;
 
     public void AddRow(BaseFormFieldModel[] fields)
     {

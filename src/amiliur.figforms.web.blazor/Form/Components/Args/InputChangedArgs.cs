@@ -1,4 +1,5 @@
 ﻿using amiliur.figforms.shared;
+using amiliur.web.shared.Models.Results;
 
 namespace amiliur.figforms.web.blazor.Form.Components.Args;
 
@@ -18,4 +19,11 @@ public class FormDataLoadedArgs
 {
     public FormDefinition FormDefinition { get; set; }
     public Object Data { get; set; }
+}
+
+public class FormDataSavedArgs
+{
+    public FormDefinition FormDefinition { get; set; }
+    public Object Data { get; set; }
+    public SaveBaseResult Result { get; set; }
 }
