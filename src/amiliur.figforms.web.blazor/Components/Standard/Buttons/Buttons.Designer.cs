@@ -60,6 +60,24 @@ namespace amiliur.figforms.web.blazor.Components.Standard.Buttons {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelling....
+        /// </summary>
+        internal static string FigCancelButtonBusyText {
+            get {
+                return ResourceManager.GetString("FigCancelButtonBusyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string FigCancelButtonText {
+            get {
+                return ResourceManager.GetString("FigCancelButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saving ....
         /// </summary>
         internal static string FigSaveButtonDefaultBusyText {

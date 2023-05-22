@@ -24,4 +24,10 @@
     <data name="FigSaveButtonDefaultBusyText" xml:space="preserve">
         <value>Saving ...</value>
     </data>
+    <data name="FigCancelButtonBusyText" xml:space="preserve">
+        <value>Cancelling...</value>
+    </data>
+    <data name="FigCancelButtonText" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
 </root>

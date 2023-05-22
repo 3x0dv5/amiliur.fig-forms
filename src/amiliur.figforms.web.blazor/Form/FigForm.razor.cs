@@ -27,7 +27,6 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
     [Parameter] public EventCallback<FormDataSavedArgs> OnSaveFailed { get; set; }
     [Parameter] public EventCallback<FormDataSavedArgs> OnSaveSuccess { get; set; }
 
-
     [Parameter] public string FormContext { get; set; } = null!;
     [Parameter] public string FormModule { get; set; } = null!;
     [Parameter] public string FormCode { get; set; } = null!;
@@ -68,11 +67,11 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
     #region Lifecycle
 
-    protected override async Task OnInitializedAsync()
-    {
-        Log.Debug("OnInitializedAsync:LoadFormDefinition:{hashCode} : {formid}", GetHashCode(), _formComponentId);
-        await LoadFormDefinition();
-    }
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     Log.Debug("OnInitializedAsync:LoadFormDefinition:{hashCode} : {formid}", GetHashCode(), _formComponentId);
+    //     await LoadFormDefinition();
+    // }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -105,8 +104,8 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
     private async Task LoadFormDefinition()
     {
-        Log.Debug($"Loading form definition:Loading form definition: {FormDefinitionService.GetHashCode()} : {_formComponentId}");
         FormDefinition = await FormDefinitionService.GetFormDefinition(FormCode, FormContext, FormModule, FormMode);
+
         _loadedFormContext = FormContext;
         _loadedFormCode = FormCode;
         _loadedFormModule = FormModule;
@@ -153,7 +152,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
             throw new Exception($"Could not find type {FormDefinition.DataTypeName}");
         }
 
-        if (FilterExpr != null)
+        if (FilterExpr != null && FormMode != FormMode.Create)
         {
             var result = await DataService.GetData(FormDefinition, FilterExpr);
             Input = result != null ? result.SingleRecord() : CreateEmptyInstanceOfEditModel(type);
