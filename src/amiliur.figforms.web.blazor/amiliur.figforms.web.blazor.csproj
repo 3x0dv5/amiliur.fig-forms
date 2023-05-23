@@ -36,6 +36,15 @@
       <EmbeddedResource Update="Components\Standard\Buttons\Buttons.pt.resx">
         <DependentUpon>Buttons.resx</DependentUpon>
       </EmbeddedResource>
+      <EmbeddedResource Update="Datagrid\DataGrid.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>DataGrid.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <Compile Update="Datagrid\DataGrid.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DataGrid.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

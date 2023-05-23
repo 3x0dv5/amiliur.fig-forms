@@ -17,7 +17,8 @@ else
         AllowPaging="@Settings.AllowPaging"
         PageSize="@Settings.PageSize"
         AllowSorting="true"
-        SelectionMode="DataGridSelectionMode.Single">
+        SelectionMode="DataGridSelectionMode.Single"
+        EmptyText="@DataGrid.EmptyText">
         <Columns>
             @foreach (var column in Settings.Columns.OrderBy(m => m.DisplayOrder).ToList())
             {
