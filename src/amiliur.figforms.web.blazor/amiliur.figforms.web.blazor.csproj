@@ -59,16 +59,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.3.23177.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.3.23177.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0-preview.3.23177.8" />
-        <PackageReference Include="Radzen.Blazor" Version="4.11.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.4.23260.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.4.23260.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0-preview.4.23260.4" />
         <PackageReference Update="Nerdbank.GitVersioning">
-          <Version>3.6.132</Version>
+          <Version>3.6.133</Version>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
+        
         <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj" />
         <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj" />
     </ItemGroup>
@@ -86,6 +86,13 @@
         <PackageReference Include="amiliur.shared" Version="1.*-*" />
     </ItemGroup>
 
+<!--    <ItemGroup Condition="'$(LocalEnvironment)' == ''">-->
+<!--	    <PackageReference Include="Radzen.Blazor" Version="4.11.1" />-->
+<!--    </ItemGroup>-->
+    <ItemGroup>
+        <PackageReference Include="Radzen.Blazor" Version="4.12.1" />
+    </ItemGroup>
+    
     <ItemGroup>
         <None Update="README.md">
             <Pack>True</Pack>

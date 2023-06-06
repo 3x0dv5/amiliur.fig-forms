@@ -23,4 +23,10 @@
     <data name="FigCancelButtonBusyText" xml:space="preserve">
         <value>A cancelar...</value>
     </data>
+    <data name="FigAddNewButtonBusyText" xml:space="preserve">
+        <value>Aguarde...</value>
+    </data>
+    <data name="FigAddNewButtonText" xml:space="preserve">
+        <value>Adicionar</value>
+    </data>
 </root>

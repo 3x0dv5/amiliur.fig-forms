@@ -3,7 +3,7 @@
 
 @if (Settings == null)
 {
-    <span>Loading</span>
+    <Loading></Loading>
 }
 else
 {
@@ -18,7 +18,8 @@ else
         PageSize="@Settings.PageSize"
         AllowSorting="true"
         SelectionMode="DataGridSelectionMode.Single"
-        EmptyText="@DataGrid.EmptyText">
+        EmptyText="@DataGrid.EmptyText"
+        @bind-Value="@SelectedItems">
         <Columns>
             @foreach (var column in Settings.Columns.OrderBy(m => m.DisplayOrder).ToList())
             {
@@ -29,6 +30,15 @@ else
                         break;
                     case TypeOfColumn.Button:
                         <ButtonColumn OnClick="OnGridButtonClick" TGridItem="TItem" Column="@column"/>
+                        break;
+                    case TypeOfColumn.Date:
+                        <DateColumn TGridItem="TItem" Column="@column"/>
+                        break;
+                    case TypeOfColumn.Decimal:
+                        <DecimalColumn TGridItem="TItem" Column="@column"/>
+                        break;
+                    case TypeOfColumn.Currency:
+                        <CurrencyColumn TGridItem="TItem" Column="@column"/>
                         break;
                     default:
                         <DefaultColumn TGridItem="TItem" Column="@column"/>
