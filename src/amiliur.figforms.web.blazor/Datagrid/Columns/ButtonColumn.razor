@@ -1,0 +1,54 @@
+﻿@using amiliur.web.shared.Attributes.Datagrid.Enums
+@typeparam TGridItem
+
+@switch (col.TypeOfButton)
+{
+    case TypeOfButton.Edit:
+        <RadzenDataGridColumn
+            TItem="@TGridItem"
+            Property="@Column.Field"
+            Title="@Column.HeaderText"
+            Visible="@Column.Visible"
+            Width="@Column.Width"
+            Sortable="false"
+            Filterable="false">
+            <Template Context="data">
+                <RadzenButton Icon="edit"
+                              title="@col.Tooltip"
+                              ButtonStyle="ButtonStyle.Light"
+                              ButtonType="ButtonType.Button"
+                              Variant="Variant.Flat"
+                              Size="ButtonSize.ExtraSmall"
+                              @onclick:stopPropagation="true"
+                              Text="@col.Text"
+                              BusyText="..."
+                              Click="@((MouseEventArgs eventArgs) => EditRow(eventArgs, data))"/>
+            </Template>
+        </RadzenDataGridColumn>
+        break;
+    case TypeOfButton.Delete:
+        <RadzenDataGridColumn
+            TItem="@TGridItem"
+            Property="@Column.Field"
+            Title="@Column.HeaderText"
+            Visible="@Column.Visible"
+            Width="@Column.Width"
+            Sortable="false"
+            Filterable="false">
+            <Template Context="data">
+                <RadzenButton Icon="delete"
+                              ButtonStyle="ButtonStyle.Danger"
+                              Variant="Variant.Flat"
+                              Shade="Shade.Lighter"
+                              Size="ButtonSize.ExtraSmall"
+                              class="my-1 ms-1"
+                              title="@col.Tooltip"
+                              Text="@col.Text"
+                              ButtonType="ButtonType.Button"
+                              BusyText="..."
+                              @onclick:stopPropagation="true"
+                              Click="@((MouseEventArgs eventArgs) => DeleteRow(eventArgs, data))"/>
+            </Template>
+        </RadzenDataGridColumn>
+        break;
+}

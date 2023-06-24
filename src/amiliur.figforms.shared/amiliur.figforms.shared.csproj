@@ -50,19 +50,12 @@
 	</ItemGroup>
 
 
+	<!--    <ItemGroup Condition="'$(LocalEnvironment)' == ''">-->
+	<!--	    <PackageReference Include="Radzen.Blazor" Version="4.11.1" />-->
+	<!--    </ItemGroup>-->
 	<ItemGroup>
-		<EmbeddedResource Update="ExceptionMessages.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
+		<PackageReference Include="Radzen.Blazor" Version="4.12.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Compile Update="ExceptionMessages.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ExceptionMessages.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
 
 </Project>

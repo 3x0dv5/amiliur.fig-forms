@@ -1,0 +1,46 @@
+﻿@using amiliur.shared.Reflection
+@if (FormDefinition == null || Input == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <EditForm EditContext="EditContext" autocomplete="off">
+        <FigFieldDataValidator FormFields="@Fields.ToList()"/>
+
+        @foreach (var field in Fields.Where(m => !m.IsVisible()))
+        {
+            <DynamicComponent
+                Type="@GetDynamicComponentType(field)"
+                Parameters="FieldToParameters(field)">
+            </DynamicComponent>
+        }
+
+        @foreach (var row in FormDefinition.Rows)
+        {
+            <div class="row">
+                @foreach (var cell in row.Cells.Where(m => m.Visible))
+                {
+                    <div class="mb-3 @(ColFromCell(cell))">
+                        @foreach (var field in cell.Fields.Where(m => m.IsVisible()))
+                        {
+                            <FigLabel
+                                For="@(() => Input.GetProperty(field.FieldName))"
+                                ForField="field"
+                                ForForm="FormDefinition">
+                            </FigLabel>
+
+                            <DynamicComponent
+                                Type="@GetDynamicComponentType(field)"
+                                Parameters="FieldToParameters(field)">
+                            </DynamicComponent>
+
+                            <FigValidationMessage Field="field" Model="Input"></FigValidationMessage>
+                        }
+                    </div>
+                }
+            </div>
+        }
+        <ErrorMessage Message="@ErrorMessage"></ErrorMessage>
+    </EditForm>
+}

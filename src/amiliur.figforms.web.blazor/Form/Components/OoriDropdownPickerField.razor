@@ -1,0 +1,73 @@
+﻿@typeparam TValue
+@typeparam TItem
+
+@inherits OoriComplextTypeFormFieldBase<TValue>
+@* @using SortOrder = Syncfusion.Blazor.DropDowns.SortOrder *@
+@* @using FilterType = Syncfusion.Blazor.DropDowns.FilterType *@
+
+@if (Results != null && PickerField != null)
+{
+    var firstColClass = PickerField.AddNewItemSettings.AllowCreateNew ? "col-9" : "col";
+
+    <div class="container-fluid" style="padding-left: 0; padding-right: 0">
+        <div class="row">
+            <div class="@firstColClass" style="padding-right: 0;">
+                @*<SfDropDownList @ref="dropDown"
+                                TValue="TValue"
+                                TItem="TItem"
+                                @bind-Value="@FValue"
+                                DataSource="@Results"
+                                SortOrder="SortOrder.Ascending"
+                                AllowFiltering="true"
+                                FilterType="FilterType.Contains"
+                                ShowClearButton="true"
+                                IgnoreAccent="true"
+                                IgnoreCase="true"
+                >
+                    <DropDownListEvents
+                        TValue="TValue"
+                        TItem="TItem"
+                        OnValueSelect="DropDownOnValueSelect"
+                        ValueChange="DropDownOnValueChange"
+                        >
+                    </DropDownListEvents>
+
+                    <DropDownListFieldSettings
+                        Value="@PickerField.ValueFieldName"
+                        Text="@PickerField.TextFieldName">
+                    </DropDownListFieldSettings>
+                </SfDropDownList>*@
+            </div>
+            @if (PickerField.AddNewItemSettings.AllowCreateNew)
+            {
+                <div class="col-3" style="padding-left: 5px;">
+                    <OoriAddNewButton Text="@PickerField.AddNewItemSettings.AddButtonText" OnClick="OnAddClick"></OoriAddNewButton>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    @*<SfDropDownList TValue="TValue" TItem="TItem" Readonly="true" Placeholder="">
+    </SfDropDownList>*@
+    @if (PickerField is {AddNewItemSettings.AllowCreateNew: true })
+    {
+        <div class="col-3" style="padding-left: 5px;">
+            <OoriAddNewButton Text="@PickerField.AddNewItemSettings.AddButtonText" OnClick="OnAddClick"></OoriAddNewButton>
+        </div>
+    }
+}
+
+@if (PickerField is { AddNewItemSettings.AllowCreateNew: true } 
+     && !string.IsNullOrEmpty(PickerField.AddNewItemSettings.AddNewControlFullName))
+{
+    @* <OoriDynamicDialog @ref="AddNewElementWindow" *@
+    @*     HeaderText="@PickerField.AddNewItemSettings.AddNewWindowTitle" *@
+    @*     ControlFullName="@PickerField.AddNewItemSettings.AddNewControlFullName" *@
+    @*     DynFormSettingsFormContext="@PickerField.AddNewItemSettings.DynamicFormSettings.Context" *@
+    @*     DynFormSettingsFormCode="@PickerField.AddNewItemSettings.DynamicFormSettings.Code" *@
+    @*     ExtraParameters="@ExtraParameters"> *@
+    @* </OoriDynamicDialog> *@
+}
+ 

@@ -1,0 +1,18 @@
+﻿@using amiliur.web.shared.Attributes.Datagrid.Models
+@typeparam TGridItem
+
+<RadzenDataGridColumn TItem="@TGridItem" Property="@Column.Field" Title="@Column.HeaderText" Visible="@Column.Visible"/>
+
+@code {
+
+    [Parameter]
+    public GridColBase Column { get; set; }
+
+
+    protected override Task OnInitializedAsync()
+    {
+        Console.WriteLine($"Column: {Column.Field}  do tipo {Column.TypeOfColumn}");
+        return base.OnInitializedAsync();
+    }
+
+}

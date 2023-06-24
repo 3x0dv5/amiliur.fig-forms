@@ -1,0 +1,10 @@
+﻿@typeparam TGridItem
+<RadzenDataGridColumn TItem="@TGridItem"
+                      Property="@col.Field"
+                      Title="@col.HeaderText"
+                      Visible="@col.Visible"
+                      FormatString="@col.Format"
+                      TextAlign="@col.TextAlign.ConvertToRadzen()"
+                      >
+
+</RadzenDataGridColumn>
