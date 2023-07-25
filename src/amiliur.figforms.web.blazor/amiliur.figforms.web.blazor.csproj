@@ -23,7 +23,7 @@
       <Compile Remove="wwwroot\**" />
       <Content Remove="wwwroot\**" />
       <EmbeddedResource Remove="wwwroot\**" />
-      <None Remove="wwwroot\**" />
+      <None Remove="wwwroot\**" /> 
       <EmbeddedResource Update="Components\Standard\Buttons\Buttons.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
@@ -68,7 +68,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        
         <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj" />
         <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj" />
     </ItemGroup>
@@ -90,7 +89,8 @@
 <!--	    <PackageReference Include="Radzen.Blazor" Version="4.11.1" />-->
 <!--    </ItemGroup>-->
     <ItemGroup>
-        <PackageReference Include="Radzen.Blazor" Version="4.13.1" />
+        <PackageReference Include="Radzen.Blazor" Version="4.14.2" />
+
     </ItemGroup>
     
     <ItemGroup>

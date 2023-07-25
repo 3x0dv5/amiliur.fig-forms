@@ -8,6 +8,7 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+<<<<<<< HEAD
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.2" />
     <PackageReference Include="xunit" Version="2.5.0-pre.22" />
@@ -23,5 +24,22 @@
       <Version>3.6.133</Version>
     </PackageReference>
   </ItemGroup>
+=======
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.0-preview.23280.1" />
+        <PackageReference Include="xunit" Version="2.5.0-pre.37" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.0-pre.22">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="6.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Update="Nerdbank.GitVersioning">
+            <Version>3.6.133</Version>
+        </PackageReference>
+    </ItemGroup>
+>>>>>>> 0be7d85e25e135dc6a9e00a9ba21546cf9f558db
 
 </Project>
