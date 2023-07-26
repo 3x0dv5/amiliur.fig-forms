@@ -77,22 +77,23 @@
         <LocalEnvironment Condition="'$(LocalEnvironment)' == ''">$(LOCAL_ENVIRONMENT_REFERENCE_PROJECTS)</LocalEnvironment>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(LocalEnvironment)' != ''">
+    <ItemGroup Condition="'$(LocalEnvironment)' == 'dev'">
         <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.shared\amiliur.shared.csproj" />
+        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(LocalEnvironment)' == ''">
+    <ItemGroup Condition="'$(LocalEnvironment)' != 'dev'">
         <PackageReference Include="amiliur.shared" Version="1.*-*" />
+        <PackageReference Include="amiliur.web.blazor" Version="1.*-*" />
     </ItemGroup>
 
-<!--    <ItemGroup Condition="'$(LocalEnvironment)' == ''">-->
-<!--	    <PackageReference Include="Radzen.Blazor" Version="4.11.1" />-->
-<!--    </ItemGroup>-->
+    <!--    <ItemGroup Condition="'$(LocalEnvironment)' == ''">-->
+    <!--	    <PackageReference Include="Radzen.Blazor" Version="4.11.1" />-->
+    <!--    </ItemGroup>-->
     <ItemGroup>
         <PackageReference Include="Radzen.Blazor" Version="4.14.2" />
 
     </ItemGroup>
-    
     <ItemGroup>
         <None Update="README.md">
             <Pack>True</Pack>
