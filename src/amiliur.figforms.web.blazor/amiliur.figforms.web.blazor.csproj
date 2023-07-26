@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Authors>Rui Lima</Authors>
@@ -20,6 +20,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="wwwroot\**" />
+      <Content Remove="wwwroot\**" />
+      <EmbeddedResource Remove="wwwroot\**" />
+      <None Remove="wwwroot\**" /> 
       <EmbeddedResource Update="Components\Standard\Buttons\Buttons.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
@@ -42,7 +46,7 @@
         <DependentUpon>DataGrid.resx</DependentUpon>
       </Compile>
     </ItemGroup>
- 
+
     <ItemGroup>
         <None Include="..\..\LICENSE">
             <Pack>True</Pack>
@@ -55,15 +59,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0-preview.5.23302.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0-preview.5.23302.2" />
-        <PackageReference Include="Radzen.Blazor" Version="4.13.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.9" />
         <PackageReference Update="Nerdbank.GitVersioning">
-            <Version>3.6.133</Version>
+          <Version>3.6.133</Version>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj" />
         <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj" />
     </ItemGroup>
 
@@ -82,6 +87,13 @@
         <PackageReference Include="amiliur.web.blazor" Version="1.*-*" />
     </ItemGroup>
 
+    <!--    <ItemGroup Condition="'$(LocalEnvironment)' == ''">-->
+    <!--	    <PackageReference Include="Radzen.Blazor" Version="4.11.1" />-->
+    <!--    </ItemGroup>-->
+    <ItemGroup>
+        <PackageReference Include="Radzen.Blazor" Version="4.14.2" />
+
+    </ItemGroup>
     <ItemGroup>
         <None Update="README.md">
             <Pack>True</Pack>
