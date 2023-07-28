@@ -24,7 +24,7 @@
         </PackageReference>
     </ItemGroup>
 
-
+    
     <ItemGroup>
         <ProjectReference Include="..\..\src\amiliur.figforms.shared\amiliur.figforms.shared.csproj"/>
     </ItemGroup>
