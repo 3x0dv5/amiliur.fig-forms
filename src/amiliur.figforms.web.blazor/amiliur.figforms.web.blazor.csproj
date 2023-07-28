@@ -17,34 +17,48 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <Description>Blazor package for amiliur FigForms</Description>
+        <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="wwwroot\**" />
-      <Content Remove="wwwroot\**" />
-      <EmbeddedResource Remove="wwwroot\**" />
-      <None Remove="wwwroot\**" /> 
-      <EmbeddedResource Update="Components\Standard\Buttons\Buttons.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <Compile Update="Components\Standard\Buttons\Buttons.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Buttons.resx</DependentUpon>
-      </Compile>
-      <EmbeddedResource Update="Components\Standard\Buttons\Buttons.pt.resx">
-        <DependentUpon>Buttons.resx</DependentUpon>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Datagrid\DataGrid.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>DataGrid.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <Compile Update="Datagrid\DataGrid.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>DataGrid.resx</DependentUpon>
-      </Compile>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+<!--        <Compile Remove="wwwroot\**"/>-->
+<!--        <Content Remove="wwwroot\**"/>-->
+<!--        <EmbeddedResource Remove="wwwroot\**"/>-->
+<!--        <None Remove="wwwroot\**"/>-->
+        <EmbeddedResource Update="Components\Standard\Buttons\Buttons.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <Compile Update="Components\Standard\Buttons\Buttons.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Buttons.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Update="Components\Standard\Buttons\Buttons.pt.resx">
+            <DependentUpon>Buttons.resx</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Datagrid\DataGrid.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>DataGrid.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <Compile Update="Datagrid\DataGrid.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>DataGrid.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Update="Datagrid\DataGrid.pt.resx">
+            <DependentUpon>DataGrid.resx</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Datagrid\DataGrid.pt-BR.resx">
+            <DependentUpon>DataGrid.pt.resx</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Components\Standard\Buttons\Buttons.pt-BR.resx">
+            <DependentUpon>Buttons.pt.resx</DependentUpon>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -55,21 +69,24 @@
     </ItemGroup>
 
     <ItemGroup>
-        <SupportedPlatform Include="browser" />
+        <None Update="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.9" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.9" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.9"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.9"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.9"/>
+        <PackageReference Include="Radzen.Blazor" Version="4.14.2"/>
         <PackageReference Update="Nerdbank.GitVersioning">
-          <Version>3.6.133</Version>
+            <Version>3.6.133</Version>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj" />
-        <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj" />
+        <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj"/>
     </ItemGroup>
 
 
@@ -78,27 +95,13 @@
     </PropertyGroup>
 
     <ItemGroup Condition="'$(LocalEnvironment)' == 'dev'">
-        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.shared\amiliur.shared.csproj" />
-        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj" />
+        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.shared\amiliur.shared.csproj"/>
+        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj"/>
     </ItemGroup>
 
     <ItemGroup Condition="'$(LocalEnvironment)' != 'dev'">
-        <PackageReference Include="amiliur.shared" Version="1.*-*" />
-        <PackageReference Include="amiliur.web.blazor" Version="1.*-*" />
-    </ItemGroup>
-
-    <!--    <ItemGroup Condition="'$(LocalEnvironment)' == ''">-->
-    <!--	    <PackageReference Include="Radzen.Blazor" Version="4.11.1" />-->
-    <!--    </ItemGroup>-->
-    <ItemGroup>
-        <PackageReference Include="Radzen.Blazor" Version="4.14.2" />
-
-    </ItemGroup>
-    <ItemGroup>
-        <None Update="README.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
+        <PackageReference Include="amiliur.shared" Version="1.*-*"/>
+        <PackageReference Include="amiliur.web.blazor" Version="1.*-*"/>
     </ItemGroup>
 
 
