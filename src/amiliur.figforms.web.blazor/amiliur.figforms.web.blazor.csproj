@@ -86,7 +86,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj"/>
         <ProjectReference Include="..\amiliur.figforms.shared\amiliur.figforms.shared.csproj"/>
     </ItemGroup>
 
