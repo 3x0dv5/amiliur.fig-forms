@@ -13,6 +13,7 @@ public partial class FigSaveButton
 
     [Parameter] public string Text { get; set; } = Buttons.FigSaveButtonDefaultText;
     [Parameter] public string BusyText { get; set; } = Buttons.FigSaveButtonDefaultBusyText;
+    [Parameter] public bool IsInPopup { get; set; }
 
     private bool IsBusy { get; set; }
 
