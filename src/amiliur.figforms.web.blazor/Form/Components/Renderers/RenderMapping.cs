@@ -8,7 +8,7 @@ public static class RenderMapping
 {
     private static readonly Dictionary<Type, Type> Map = new()
     {
-        {typeof(HiddenRenderer), typeof(OoriFormHiddenField)},
+        // {typeof(HiddenRenderer), typeof(OoriFormHiddenField)},
         {typeof(TextFieldRenderer), typeof(OoriFormTextField)},
         {typeof(NumericFieldRenderer), typeof(OoriFormNumericField<>)},
         {typeof(PickerRenderer), typeof(OoriDropdownPickerField<,>)}

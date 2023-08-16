@@ -5,6 +5,12 @@ namespace amiliur.figforms.shared;
 
 public class FormDataSaveContainer: ISerializableModel
 {
-    public BaseEditModel Data { get; set; }
-    public FormDefinition FormDefinition { get; set; }
+    public BaseEditModel Data { get; set; } = null!;
+    public FormDefinition FormDefinition { get; set; } =null!;
+
+    // ReSharper disable once EmptyConstructor
+    public FormDataSaveContainer()
+    {
+        
+    }
 }

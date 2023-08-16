@@ -3,7 +3,6 @@ using amiliur.web.blazor.Services.AppState;
 using amiliur.web.blazor.Services.Base;
 using amiliur.web.shared.Forms;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Serilog;
 
 namespace amiliur.figforms.web.blazor.Form.Services;
 

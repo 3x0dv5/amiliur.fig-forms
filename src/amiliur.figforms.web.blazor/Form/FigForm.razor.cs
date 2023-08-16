@@ -42,6 +42,9 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
     #endregion
 
+   
+    
+    
     #region Properties and attributes
 
     public BaseEditModel Input { get; set; } = null!;
@@ -76,6 +79,8 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
             IsDataLoaded = false;
             await LoadFormDefinition();
         }
+
+        IsDataLoaded = true;
     }
 
     private bool IsDifferentForm()
@@ -143,8 +148,8 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
         }
         else
             Input = CreateEmptyInstanceOfEditModel(type);
-
         EditContext = new EditContext(Input);
+        await InvokeFormDataLoaded();
     }
 
     private static BaseEditModel CreateEmptyInstanceOfEditModel(Type type)

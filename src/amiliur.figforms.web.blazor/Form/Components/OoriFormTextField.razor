@@ -1,16 +1,3 @@
 ﻿@inherits OoriSimpleTypeFormFieldBase<string>
-@if (Multiline)
-{
-    <RadzenTextArea
-        @ref="@Control"
-        Value="@ValueWrapper"
-        ValueChanged="OnValueChanged">
-    </RadzenTextArea>
-}
-else
-{
-    <RadzenTextBox @ref="@Control"
-                   Value="@ValueWrapper"
-                   ValueChanged="OnValueChanged">
-    </RadzenTextBox>
-}
+<SfTextBox Value="@ValueWrapper" ValueChange="OnValueChanged" Multiline="@Multiline">
+</SfTextBox>
