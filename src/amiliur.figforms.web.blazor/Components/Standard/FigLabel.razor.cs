@@ -10,20 +10,20 @@ namespace amiliur.figforms.web.blazor.Components.Standard;
 
 public partial class FigLabel<T> : ComponentBase
 {
-    [Parameter] public Expression<Func<T>> For { get; set; }
+    [Parameter] public Expression<Func<T>> For { get; set; } = null!;
 
     [Parameter] public bool? OverriddenRequired { get; set; } = null;
     [Parameter] public bool Visible { get; set; } = true;
-    [Parameter] public BaseFormFieldModel ForField { get; set; }
-    [Parameter] public FormDefinition ForForm { get; set; }
+    [Parameter] public BaseFormFieldModel? ForField { get; set; }
+    [Parameter] public FormDefinition? ForForm { get; set; }
 
-    private IDictionary<string, object> _additionalAttributes = new Dictionary<string, object>
+    private IDictionary<string, object>? _additionalAttributes = new Dictionary<string, object>
     {
         {"class", "col-form-label"}
     };
 
     [Parameter(CaptureUnmatchedValues = true)]
-    public IDictionary<string, object> AdditionalAttributes
+    public IDictionary<string, object>? AdditionalAttributes
     {
         get => _additionalAttributes;
         set
