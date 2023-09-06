@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Radzen.Blazor;
 
 namespace amiliur.figforms.web.blazor.Form.Components;
 
@@ -9,8 +8,9 @@ public partial class OoriFormTextField : OoriSimpleTypeFormFieldBase<string>
 
     private string ValueWrapper
     {
-        get => FValue;
+        get => FValue ?? string.Empty;
         set => FValue = value;
     }
-    public ComponentBase Control { get; set; }
+
+    public ComponentBase Control { get; set; } = null!;
 }

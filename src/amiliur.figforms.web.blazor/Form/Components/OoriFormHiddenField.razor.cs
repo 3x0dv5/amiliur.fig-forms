@@ -6,7 +6,7 @@ public partial class OoriFormHiddenField : OoriSimpleTypeFormFieldBase<string>
 {
     private string ValueWrapper
     {
-        get => FValue;
+        get => FValue ?? string.Empty;
         set => FValue = value;
     }
 

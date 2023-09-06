@@ -4,8 +4,8 @@ namespace amiliur.figforms.web.blazor.Form.Components.Args;
 
 public class FieldChangedArgs
 {
-    public string PropertyName { get; set; }
-    public object NewValue { get; set; }
-    public object OldValue { get; set; }
-    public IFormField FormField { get; set; }
+    public string PropertyName { get; set; } = string.Empty;
+    public object? NewValue { get; set; }
+    public object? OldValue { get; set; }
+    public IFormField FormField { get; set; } = null!;
 }

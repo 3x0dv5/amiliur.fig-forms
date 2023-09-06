@@ -3,7 +3,6 @@ using amiliur.web.blazor.Services.AppState;
 using amiliur.web.blazor.Services.Base;
 using amiliur.web.shared.Forms;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Serilog;
 
 namespace amiliur.figforms.web.blazor.Form.Services;
 
@@ -18,7 +17,7 @@ public class FormDefinitionService : ServerServiceBase
 
     protected override string SubPath => "form-definition";
 
-    public async Task<FormDefinition?> GetFormDefinition(string formCode, string formContext, string formModule, FormMode formMode)
+    public async Task<FormDefinition> GetFormDefinition(string formCode, string formContext, string formModule, FormMode formMode)
     {
         if (_cache.TryGetValue((formCode, formContext, formModule, formMode), out var formDefinition))
         {

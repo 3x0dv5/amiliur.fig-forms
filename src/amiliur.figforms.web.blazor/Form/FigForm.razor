@@ -1,5 +1,5 @@
 ﻿@using amiliur.shared.Reflection
-@if (FormDefinition == null || Input == null)
+@if (!IsDataLoaded)
 {
     <Loading></Loading>
 }
@@ -10,10 +10,14 @@ else
 
         @foreach (var field in Fields.Where(m => !m.IsVisible()))
         {
-            <DynamicComponent
-                Type="@GetDynamicComponentType(field)"
-                Parameters="FieldToParameters(field)">
-            </DynamicComponent>
+            <div class="d-none">
+                <div style="display:none" data-displayname="@field.DisplayName" data-hidden="@field.IsHidden"></div>
+
+                <DynamicComponent
+                    Type="@GetDynamicComponentType(field)"
+                    Parameters="FieldToParameters(field)">
+                </DynamicComponent>
+            </div>
         }
 
         @foreach (var row in FormDefinition.Rows)
@@ -24,6 +28,8 @@ else
                     <div class="mb-3 @(ColFromCell(cell))">
                         @foreach (var field in cell.Fields.Where(m => m.IsVisible()))
                         {
+                            <div style="display:none" data-displayname="@field.DisplayName" data-hidden="@field.IsHidden"></div>
+
                             <FigLabel
                                 For="@(() => Input.GetProperty(field.FieldName))"
                                 ForField="field"

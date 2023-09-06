@@ -42,14 +42,17 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
     #endregion
 
+   
+    
+    
     #region Properties and attributes
 
-    public BaseEditModel? Input { get; set; }
-    public bool InEditMode => Input != null && Input.IsEdit;
-    private IEnumerable<BaseFormFieldModel> Fields => FormDefinition?.Fields ?? Array.Empty<BaseFormFieldModel>();
+    public BaseEditModel Input { get; set; } = null!;
+    public bool InEditMode => Input.IsEdit;
+    private IEnumerable<BaseFormFieldModel> Fields => FormDefinition.Fields;
     private string? ErrorMessage { get; set; } = null!;
 
-    public FormDefinition? FormDefinition { get; set; }
+    public FormDefinition FormDefinition { get; set; } = null!;
 
     private string _loadedFormContext = null!;
     private string _loadedFormCode = null!;
@@ -67,12 +70,6 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
     #region Lifecycle
 
-    // protected override async Task OnInitializedAsync()
-    // {
-    //     Log.Debug("OnInitializedAsync:LoadFormDefinition:{hashCode} : {formid}", GetHashCode(), _formComponentId);
-    //     await LoadFormDefinition();
-    // }
-
     protected override async Task OnParametersSetAsync()
     {
         if (IsDifferentForm())
@@ -82,6 +79,8 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
             IsDataLoaded = false;
             await LoadFormDefinition();
         }
+
+        IsDataLoaded = true;
     }
 
     private bool IsDifferentForm()
@@ -97,8 +96,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
     public Task OnFieldChanged(IFormField field, FieldChangedArgs args)
     {
-        if (Input != null)
-            Input.SetPropertyValue(args.PropertyName, args.NewValue);
+        Input.SetPropertyValue(args.PropertyName, args.NewValue);
         return Task.CompletedTask;
     }
 
@@ -110,13 +108,8 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
         _loadedFormCode = FormCode;
         _loadedFormModule = FormModule;
         _loadedFormMode = FormMode;
-
         LoadFieldRenderers();
-
         await InvokeFormDefinitionLoaded();
-
-        if (FormDefinition == null)
-            return;
         await ResetData();
     }
 
@@ -130,23 +123,19 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
             var rendererType = RenderMapping.GetRenderer(field);
 
-            var renderer = (OoriFormField) Activator.CreateInstance(rendererType)!;
+            var renderer = (OoriFormField)Activator.CreateInstance(rendererType)!;
             FieldComponents.Add(field.FieldName, renderer);
         }
     }
 
     private async Task InvokeFormDefinitionLoaded()
     {
-        if (FormDefinition != null)
-            await FormDefinitionLoaded.InvokeAsync(new FormDefinitionLoadedArgs {FormDefinition = FormDefinition});
+        await FormDefinitionLoaded.InvokeAsync(new FormDefinitionLoadedArgs { FormDefinition = FormDefinition });
     }
 
     public async Task ResetData()
     {
-        if (FormDefinition == null)
-            return;
-
-        var type = TypeUtils.FindTypeByName(FormDefinition.DataTypeName.Split(',')[0].Trim(), new List<string> {FormDefinition.DataTypeName.Split(',')[1].Trim()});
+        var type = TypeUtils.FindTypeByName(FormDefinition.DataTypeName.Split(',')[0].Trim(), new List<string> { FormDefinition.DataTypeName.Split(',')[1].Trim() });
         if (type == null)
         {
             throw new Exception($"Could not find type {FormDefinition.DataTypeName}");
@@ -159,14 +148,13 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
         }
         else
             Input = CreateEmptyInstanceOfEditModel(type);
-
-        if (Input != null)
-            EditContext = new EditContext(Input);
+        EditContext = new EditContext(Input);
+        await InvokeFormDataLoaded();
     }
 
     private static BaseEditModel CreateEmptyInstanceOfEditModel(Type type)
     {
-        var result = (BaseEditModel?) Activator.CreateInstance(type);
+        var result = (BaseEditModel?)Activator.CreateInstance(type);
         if (result == null)
             throw new Exception($"Could not create instance of {type.FullName}");
         return result;
@@ -174,40 +162,40 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
 
     private async Task InvokeFormDataLoaded()
     {
-        await FormDataLoaded.InvokeAsync(new FormDataLoadedArgs {FormDefinition = FormDefinition, Data = Input});
+        await FormDataLoaded.InvokeAsync(new FormDataLoadedArgs { FormDefinition = FormDefinition, Data = Input });
         IsDataLoaded = true;
     }
 
 
-    private IDictionary<string, object> FieldToParameters(IFormField field)
+    private IDictionary<string, object?> FieldToParameters(IFormField field)
     {
-        var fieldParameters = ExplodeFieldParameters(field) ?? new Dictionary<string, object>();
+        var fieldParameters = ExplodeFieldParameters(field);
         var events = CustomEventsInField(field);
 
         if (events.Any())
             Log.Debug("events of {0}: {1}", field.FieldName, events.Select(e => e.Key).ToList().ToJson());
+
         var fieldAsParameters = events
             .Concat(fieldParameters)
-            .Concat(
-                new Dictionary<string, object>
-                {
-                    {"FormField", field},
-                    {"FId", $"{FormDefinition.Id}-{field.FieldName}"},
-                    {"FValue", Input.GetPropertyValue(field.FieldName)},
-                    {"FieldEventHandlers", this},
-                    {"FormInputModel", Input}
-                })
+            .Concat(new Dictionary<string, object?>
+            {
+                { "FormField", field },
+                { "FId", $"{FormDefinition.Id}-{field.FieldName}" },
+                { "FValue", Input.GetPropertyValue(field.FieldName) ?? "" },
+                { "FieldEventHandlers", this },
+                { "FormInputModel", Input }
+            })
             .ToDictionary(x => x.Key, x => x.Value);
 
         return fieldAsParameters;
     }
 
 
-    private Dictionary<string, object> CustomEventsInField(IFormField field)
+    private Dictionary<string, object?> CustomEventsInField(IFormField field)
     {
-        var events = new Dictionary<string, object>
+        var events = new Dictionary<string, object?>
         {
-            {"RelatedFieldToMustUpdate", EventCallback.Factory.Create<RelatedFieldToMustUpdateArgs>(this, OnRelatedFieldToMustUpdate)}
+            { "RelatedFieldToMustUpdate", EventCallback.Factory.Create<RelatedFieldToMustUpdateArgs>(this, OnRelatedFieldToMustUpdate) }
         };
 
         var eventProperties = GetDynamicComponentType(field)
@@ -237,7 +225,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
         return Task.CompletedTask;
     }
 
-    private Dictionary<string, object> ExplodeFieldParameters(IFormField field)
+    private Dictionary<string, object?> ExplodeFieldParameters(IFormField field)
     {
         var rendererProperties = GetDynamicComponentType(field)
             .GetProperties()
@@ -250,7 +238,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
                 p.Name,
                 Value = field.GetPropertyValueNonNull(p.Name)
             })
-            .ToDictionary(x => x.Name, x => x.Value);
+            .ToDictionary(x => x.Name, x => x.Value)!;
     }
 
     private Type GetDynamicComponentType(IFormField field)
@@ -266,7 +254,7 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
         return FieldComponents[field.FieldName];
     }
 
-    public BaseEditModel? GetFormValues()
+    public BaseEditModel GetFormValues()
     {
         return Input;
     }
@@ -286,12 +274,9 @@ public partial class FigForm : ComponentBase, IOoriFieldEventHandlers
     public async Task SaveData()
     {
         ErrorMessage = string.Empty;
-        if (HasValidData() && FormDefinition != null)
+        if (HasValidData())
         {
             var model = GetFormValues();
-            if (model == null)
-                return;
-
             var result = await DataService.SaveFormData<SaveBaseResult>(FormDefinition, model);
             var savedArgs = new FormDataSavedArgs
             {

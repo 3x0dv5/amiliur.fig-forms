@@ -28,7 +28,7 @@ public abstract class BaseFormFieldModel : IFormField, ISerializableModel
 
     public bool IsVisible()
     {
-        return !IsHidden;
+        return !IsHidden || IsRequired().GetValueOrDefault();
     }
 
     protected FormFieldType fieldType;
