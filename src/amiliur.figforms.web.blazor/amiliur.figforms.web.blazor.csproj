@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Authors>Rui Lima</Authors>
@@ -76,10 +76,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.9"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.9"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.9"/>
-        <PackageReference Include="Radzen.Blazor" Version="4.14.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0" />
+        <PackageReference Include="Radzen.Blazor" Version="4.21.4" />
         <PackageReference Update="Nerdbank.GitVersioning">
             <Version>3.6.133</Version>
         </PackageReference>
@@ -94,14 +94,14 @@
         <LocalEnvironment Condition="'$(LocalEnvironment)' == ''">$(LOCAL_ENVIRONMENT_REFERENCE_PROJECTS)</LocalEnvironment>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(LocalEnvironment)' == 'dev'">
+    <ItemGroup Condition="'$(LocalEnvironment)' != ''">
         <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.shared\amiliur.shared.csproj"/>
         <ProjectReference Include="..\..\..\amiliur.web\src\amiliur.web.blazor\amiliur.web.blazor.csproj"/>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(LocalEnvironment)' != 'dev'">
-        <PackageReference Include="amiliur.shared" Version="1.*-*"/>
-        <PackageReference Include="amiliur.web.blazor" Version="1.*-*"/>
+    <ItemGroup Condition="'$(LocalEnvironment)' == ''">
+        <PackageReference Include="amiliur.shared" Version="1.*-*" />
+        <PackageReference Include="amiliur.web.blazor" Version="1.*-*" />
     </ItemGroup>
 
 
